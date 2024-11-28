@@ -1,22 +1,14 @@
-header {
+.navbar {
   background-color: #03044d;
   color: white;
-  width: 100%;
-  padding: 1rem 0;
+  padding: 1%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
   font-weight: bold;
 }
 
-header {
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-nav ul {
+.navbar ul {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -31,25 +23,42 @@ nav a {
 }
 
 nav a:hover {
-  color: blue;
+  color: rgb(99, 99, 245);
 }
 
 .logout-text {
   cursor: pointer;
   color: #fff;
   margin: 0 15px;
-  transition: background-color 0.3s; /* Add transition for smooth color change */
+  transition: background-color 0.3s; 
 }
 
 .logout-text:hover {
   color: blue;
 }
 
-.user-info {
-  margin-right: 15px; /* Adjust spacing as needed */
-  color: white; /* Set initial color */
+.welcome-container{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
-.user-info:hover {
-  color: blue; /* Change color on hover */
+.welcome{
+  margin-right: 20px;
+}
+
+.logout-button{
+  min-width: 80px;
+  height: 30px;
+  background-color: blue;
+  color: aliceblue;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover{
+  background-color: #2b2d90;
 }

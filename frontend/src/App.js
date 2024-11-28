@@ -6,22 +6,32 @@ import './App.css';
 import Login from './components/Login';
 import Favourites from './components/Favourites';
 import Signup from './components/Signup';
+import { useState } from 'react';
+import AddQuote from './components/AddQuote';
+import QuoteDetails from './components/QuoteDetails.js';
+import FavQuoteDetails from './components/FavQuoteDetails.js';
+import EditQuote from './components/AdminOps/EditQuote.js';
+import Admin from './components/AdminOps/Admin.js';
 
 function App() {
+    const [userDetails, setUserDetails] = useState(null)
+
     return (
         <Router>
-            <div className="container">
-             <Header />
-                <div className="main-content">
+             <Header setUserDetails={setUserDetails}/>
                     <Routes>
-                        <Route exact path="/favourites" element={<Favourites />} />
-                        <Route path="/" element={<AllQuotes />} />
-                        <Route path="/login" element={<Login />} />
+                        <Route exact path="/favourites" element={<Favourites userDetails={userDetails}/>} />
+                        <Route path="/" element={<AllQuotes userDetails={userDetails}/>} />
+                        <Route path="/login" element={<Login setUserDetails={setUserDetails}/>} />
                         <Route path="/signup" element={<Signup />} />
+                        <Route path='/add' element={<AddQuote userDetails={userDetails}/>}/>
+                        <Route exact path='/quote/:id' element={<QuoteDetails />}/>
+                        <Route exact path='/favquote/:id' element={<FavQuoteDetails />}/>
+                        <Route path='/add-quote/' element={<AddQuote />}/>
+                        <Route path='/edit-quote/:id' element={<EditQuote />}/>
+                        <Route path='/admin' element={<Admin />}/>
                     </Routes>
-                </div>
                 <Footer />
-            </div>
         </Router>
     );
 }

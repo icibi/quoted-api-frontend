@@ -1,0 +1,11 @@
+.details-container {
+    align-content: center;
+    display: flex;
+    justify-content: center;
+}
+
+.q {
+    width: 30%;
+    margin-top: 5%;
+    margin-left: 5%;
+}

@@ -8,6 +8,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+  //login with username and password
   const handleLogin = async (e) => {
     e.preventDefault();
     setErrorMessage("");
@@ -24,6 +25,7 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(response.data));
         window.location.href = "/favourites";
       }
+      
     } catch (error) {
       setErrorMessage(
         error.response?.data || "An error occurred. Please try again later."
@@ -32,6 +34,7 @@ const Login = () => {
   };
 
   return (
+    <div className='container'>
     <div className="form-container">
       <h2>Login</h2>
       <form onSubmit={handleLogin} className="form">
@@ -63,6 +66,7 @@ const Login = () => {
       </form>
       {errorMessage && <p className="error">{errorMessage}</p>}
       {successMessage && <p className="success">{successMessage}</p>}
+    </div>
     </div>
   );
 };
