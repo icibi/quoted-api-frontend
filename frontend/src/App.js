@@ -12,6 +12,7 @@ import QuoteDetails from './components/QuoteDetails.js';
 import FavQuoteDetails from './components/FavQuoteDetails.js';
 import EditQuote from './components/AdminOps/EditQuote.js';
 import Admin from './components/AdminOps/Admin.js';
+import UserAccount from './components/UserAccount.js';
 
 function App() {
     const [userDetails, setUserDetails] = useState(null)
@@ -30,6 +31,7 @@ function App() {
                         <Route path='/add-quote/' element={<AddQuote />}/>
                         <Route path='/edit-quote/:id' element={<EditQuote />}/>
                         <Route path='/admin' element={<Admin />}/>
+                        <Route path='/update-acc' element={<UserAccount />}/>
                     </Routes>
                 <Footer />
         </Router>

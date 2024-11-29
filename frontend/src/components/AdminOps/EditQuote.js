@@ -77,6 +77,8 @@ const EditQuote = () => {
         }
     }
 
+    if (error) return <div>Error: {error}</div>;
+
     return (
         <div className="container">
             <div className="form-container">

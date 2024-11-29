@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import axios from "axios";
+import "../styles/Login.css";
 
-const Admin = () => {
+const UserAccount = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [username, setUsername] = useState('')
-    const [role, setRole] = useState('')
     const [userDetails, setUserDetails] = useState([])
     const nav = useNavigate()
     const apiURL = 'http://localhost:5163/api'
@@ -16,6 +15,7 @@ const Admin = () => {
         const user = localStorage.getItem('user')
         if (!user) {
             nav('/login')
+
         }
 
         const storedUserDetails = JSON.parse(user)
@@ -23,26 +23,15 @@ const Admin = () => {
             setUserDetails(storedUserDetails)
         }
 
-        const userRole = storedUserDetails.userRole
-
-        if (userRole !== 'admin') {
-            nav('/')
-        }
-
     }, [nav]);
 
-    //handle updating admin account
+    //handle updating email and password
     const handleSubmit = async () => {
         const userId = userDetails.uid
         try {
-            const r = await axios.put(`${apiURL}/Auth/admin-update/${userId}`, {
-                Uid: userId,
+            const r = await axios.patch(`${apiURL}/Auth/user-update/${userId}`, {
                 Email: email,
-                Username: username,
-                Password: password,
-                ErrorReports: [],
-                Favourites: [],
-                UserRole: role
+                password: password
             })
 
             if (r.status === 200) {
@@ -64,7 +53,7 @@ const Admin = () => {
     return (
         <div className='container'>
             <div className="form-container">
-                <h1>Update Admin Account Details</h1>
+                <h1>Update Account Details</h1>
                 <form onSubmit={handleSubmit} className="form">
                     <div className="form-group">
                         <label htmlFor="email">Email:</label>
@@ -78,18 +67,7 @@ const Admin = () => {
                             className="input"
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="username">Username:</label>
-                        <input
-                            type="username"
-                            id="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Enter your username"
-                            required
-                            className="input"
-                        />
-                    </div>
+
                     <div className="form-group">
                         <label htmlFor="password">Password:</label>
                         <input
@@ -98,18 +76,6 @@ const Admin = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Enter your password"
-                            required
-                            className="input"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="role">Role:</label>
-                        <input
-                            type="role"
-                            id="role"
-                            value={role}
-                            onChange={(e) => setRole(e.target.value)}
-                            placeholder="Enter your role"
                             required
                             className="input"
                         />
@@ -123,4 +89,4 @@ const Admin = () => {
     )
 }
 
-export default Admin
+export default UserAccount
