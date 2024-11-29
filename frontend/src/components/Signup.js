@@ -25,10 +25,9 @@ const Signup = () => {
         setSuccessMessage("Signup successful. You can now login.");
         window.location.href = "/login";
       }
-
     } catch (error) {
       setErrorMessage(
-        error.response?.data || "An error occurred. Please try again later."
+        error.response?.data.message || "An error occurred. Please try again later."
       );
     }
   };
